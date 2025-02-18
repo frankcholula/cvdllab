@@ -5,7 +5,8 @@ clear all
 INPUT_IMAGE = 'surrey.png';
 
 img_in=double(imread(INPUT_IMAGE))./255;
-%img_in=cheqpattern(200,200,5,5);
+% img_in=ipv_cheqpattern(200,200,5,5);
+% img_in=imgaussfilt(img_in,1);
 
 % build test transform
 H=size(img_in,1);  % height
@@ -22,6 +23,6 @@ T=[1 0 -W/2 ; ...
 
 M=inv(T)*R*T;
 
-%[img_unwarped score]=ipv_unwarp_score_nearest(img_in,M);
+[img_unwarped score]=ipv_unwarp_score_nearest(img_in,M);
 [img_unwarped score]=ipv_unwarp_score_bilinear(img_in,M);
 imshow([img_in img_unwarped]);
