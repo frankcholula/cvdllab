@@ -19,8 +19,9 @@ clear all;
 
 INPUT_IMAGE = 'surrey.png';
 
-img_in=double(imread(INPUT_IMAGE))./255;
-%img_in=ipv_cheqpattern(500,500,2,2);
+% img_in=double(imread(INPUT_IMAGE))./255;
+img_in=ipv_cheqpattern(500,500,3,3);
+img_in=imgaussfilt(img_in,1);
 
 H=size(img_in,1);  % height
 W=size(img_in,2);  % width
@@ -30,12 +31,16 @@ R=[cos(th) -sin(th) 0 ; ...
    sin(th)  cos(th) 0 ; ...
    0        0       1];
 
+sf=0.3
+S=[sf 0 0 ; ...
+   0  sf 0 ; ...
+   0        0       1];
+
 T=[1 0 -W/2 ; ...
    0 1 -H/2 ; ...
    0 0 1];
 
-M=inv(T)*R*T;
-
+M=inv(T)*S*R*T;
 % warp 4 corners
 corners=[1 1 H W ; 1 W W 1];
 corners(3,:)=1;
