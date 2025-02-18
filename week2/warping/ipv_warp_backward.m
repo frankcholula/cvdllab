@@ -35,12 +35,28 @@ T=[1 0 -W/2 ; ...
 
 M=inv(T)*R*T;
 
-img_out=zeros(H,W,3);
+corners = [0 W 0 W; 0 0 H H]
+corners(3,:) = 1
+warpedcorners = M * corners;
+
+
+minx = min(warpedcorners(1,:));
+miny = min(warpedcorners(2,:));
+maxx = max(warpedcorners(1,:));
+maxy = max(warpedcorners(2,:));
+
+T = [1 0 -minx; 0 1 -miny; 0 0 1];
+M = T*M;
+newW = ceil(maxx - minx + 1);
+newH = ceil(maxy - miny + 1);
+
+
+img_out=zeros(newH,newW,3);
 
 M=inv(M);
 
-for x=1:W
-    for y=1:H
+for x=1:newW
+    for y=1:newH
         
         q = [x ; y ; 1];
         p = M * q;
