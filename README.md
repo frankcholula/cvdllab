@@ -9,10 +9,20 @@ cvdllabs
 ├── LICENSE
 ├── README.md
 ├── assets
-└── week1
-    ├── Week1_matlab_labsheet.pdf
-    ├── week1.asv
-    └── week1.m
+│   └── surrey.png
+├── week1
+│   ├── Week1_matlab_labsheet.pdf
+│   ├── week1.asv
+│   └── week1.m
+├── week2
+│   ├── Week2_warping_worksheet_part1_2025.pdf
+│   ├── completion
+│   ├── composite
+│   └── warping
+├── week3
+│   └── Week3_warping_worksheet_part2_2025.pdf
+└── week4
+    └── Week4_image_comp.pdf
 ```
 
 ## License
